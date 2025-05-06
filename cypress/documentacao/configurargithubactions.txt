@@ -1,0 +1,5 @@
+Utilizando o ci/cd 
+Para configurar o github actions
+crie na raiz do projeto a pasta .github/workflows e dentro da mesma crie o arquivo yml com as configurações obtidas através dos exemplos de actions do cypress através dos links:
+https://docs.cypress.io/app/continuous-integration/github-actions e https://github.com/cypress-io/github-action
+nesse projeto temos dois exemplos de actions usando pull request e outro usando agendamento via crontab

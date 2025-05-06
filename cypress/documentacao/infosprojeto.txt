@@ -1,0 +1,3 @@
+Para executar os testes passando o reporter do proprio cypress, execute:
+npx cypress run --record --key f36d00c7-c165-4101-ab15-0aa1e5e67602
+chave gerada no cypresscloud

@@ -1,0 +1,27 @@
+name: Cypress e2e
+on: 
+  push:
+    pull_request:
+      branches:
+        - 'master'
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+        #definindo que vai ser executado no navegador chrome
+          browser: chrome
+
+      - name: Subindo relatório
+        if: always() # Certifique-se de que o relatório será salvo mesmo se os testes falharem
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-report # Nome do artifact
+          path: mochawesome-report # Caminho onde o relatório está salvo
+          retention-days: 3 # Define que o artifact expira em 3 dias

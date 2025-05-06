@@ -1,0 +1,95 @@
+6 passos para automatizar API ou WEB com cypress
+
+Pré requisitos
+- NodeJs Instaladonp
+- Ide Vscode
+
+1 - Criar a pasta do projeto
+2 - criar o projeto - npm init -y      (nisso vai ser criado o package.json do projeto)
+3 - instalar os pacotes do cypress - npm install cypress
+3.1 - para instalar o cypress no projeto: npx cypress install --force     esse --force é para forçar a instalação, caso já exista algum projeto na maquina
+3.2 - verificar se está tudo certo com instalação do cypress: npx cypress verify
+4 - iniciar o cypress para configurar - npx cypress open
+5 - criar o arquivo de testes na pasta e2e, (criar a pasta dentro da pasta cypress caso não exista), sendo que o nome do arquivo deve ter a extensão .cy.js   (exemplo login_appsv.cy.js)
+6 - criar cenários
+7 - para inspecionar elementos: use inspecionar no navegador:
+para pesquisar o elemento por id use o  hastag: #btnLogin, para pesquisar por uma class use o ponto: .theme-btn-one
+macete bom para copiar seletores, é no inspecionar selecionar a classe, clicar bom botão direito e usar a opção copy > copy selector
+Também pode se usar o recurso (alvo, mira) do próprio cypress para capturar os elementos, após a execução do seu primeiro teste ele fica aberto na primeira tela
+
+ao criar um cenário de teste inclua a referencia do cypress na primeira linha do cenário: /// <reference types="cypress" />
+
+o padrão que é escrito um cenário é informando o describe que seria a funcionalidade e dentro da funcionalidade informar o cenário de teste com it,   exemplo:
+
+/// <reference types="cypress" />
+//funcionalidade
+describe('Acessar site', () => {
+
+    //cenario de teste 1
+    it('Acessar site', () => {
+        cy.visit("https://xpto.com.br/")
+        cy.get('#User').type('loginusuario');
+        cy.get('#Password').type('123456')
+        cy.contains('button', 'Entrar').click();
+    })
+
+})
+
+para executar todos os testes via linha de comando:
+npx cypress run
+
+
+
+comandos cypress:
+1. Comandos de Navegação
+cy.visit(url): Navega até uma página específica.
+cy.go(direction): Navega pelo histórico do navegador (por exemplo, cy.go('back') ou cy.go('forward')).
+cy.reload(): Recarrega a página atual.
+2. Comandos de Interação com Elementos
+cy.get(selector): Seleciona um ou mais elementos da página usando um seletor CSS.
+cy.contains(texto): Encontra um elemento que contém o texto especificado.
+cy.type(texto): Digita texto em um campo de entrada.
+cy.clear(): Limpa o conteúdo de um campo de entrada.
+cy.click(): Clica em um elemento.
+cy.dblclick(): Dá um duplo clique em um elemento.
+cy.rightclick(): Clica com o botão direito em um elemento.
+cy.check(): Marca um checkbox ou radio button.
+cy.uncheck(): Desmarca um checkbox.
+cy.select(value): Seleciona uma opção de um dropdown.
+3. Comandos de Espera e Sincronização
+cy.wait(milliseconds): Espera um número específico de milissegundos.
+cy.wait(alias): Espera por uma solicitação específica para ser concluída.
+cy.intercept(): Intercepta e modifica requisições de rede.
+4. Comandos de Asserção
+cy.should(): Faz uma asserção sobre o estado de um elemento ou objeto.
+cy.expect(): Um método alternativo para asserções, usado com o padrão de asserção BDD.
+cy.and(): Usado para encadear múltiplas asserções em um comando.
+5. Comandos de Manuseio de Arquivos
+cy.readFile(filepath): Lê o conteúdo de um arquivo.
+cy.writeFile(filepath, data): Escreve dados em um arquivo.
+6. Comandos de Cookies
+cy.getCookie(name): Obtém um cookie específico.
+cy.setCookie(name, value): Define um cookie com um nome e valor específico.
+cy.clearCookie(name): Limpa um cookie específico.
+cy.clearCookies(): Limpa todos os cookies.
+7. Comandos de Local Storage
+cy.getLocalStorage(key): Obtém um item do local storage.
+cy.setLocalStorage(key, value): Define um item no local storage.
+cy.clearLocalStorage(): Limpa todos os itens do local storage.
+8. Comandos de Manipulação de Janela
+cy.window(): Obtém a janela do navegador.
+cy.document(): Obtém o documento do DOM.
+cy.title(): Obtém o título da página.
+9. Comandos de Alias e Espera
+cy.as(alias): Cria um alias para um elemento ou requisição.
+cy.get(alias): Obtém o elemento ou requisição usando o alias.
+cy.wait(alias): Espera pelo alias ser resolvido.
+10. Comandos de Depuração
+cy.debug(): Adiciona um ponto de interrupção no código para depuração.
+cy.log(message): Registra uma mensagem no log do Cypress.
+11. Comandos de Sessões e Autenticação
+cy.session(): Gerencia as sessões de usuário, permitindo reutilizar dados de autenticação.
+cy.login(): Um comando personalizado (geralmente criado pelo desenvolvedor) para simular o login do usuário.
+12. Comandos de Modais e Pop-ups
+cy.on(event, callback): Escuta eventos no navegador, como erros ou pop-ups.
+cy.stub(): Cria uma função espiã para testar interações específicas.
