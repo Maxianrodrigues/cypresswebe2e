@@ -2,7 +2,7 @@ name: Cypress e2e
 on:
   schedule:
     - cron: '0 9 * * 1-5'
-    
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
@@ -21,6 +21,6 @@ jobs:
         if: always() # Certifique-se de que o relatório será salvo mesmo se os testes falharem
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-report # Nome do artifact
-          path: mochawesome-report # Caminho onde o relatório está salvo
+          name: index # Nome do artifact
+          path: reports\html # Caminho onde o relatório está salvo
           retention-days: 3 # Define que o artifact expira em 3 dias
