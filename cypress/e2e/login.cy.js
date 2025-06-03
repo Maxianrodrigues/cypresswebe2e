@@ -1,4 +1,5 @@
 //const loginPage = require('../support/pages/loginPage')
+/// <reference types="cypress" />
 import { faker } from "@faker-js/faker"
 import loginPage from "../support/pages/loginPage"
 import telas from "../utils/devices"

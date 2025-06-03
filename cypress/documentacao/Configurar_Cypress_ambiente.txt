@@ -38,6 +38,12 @@ describe('Acessar site', () => {
 para executar todos os testes via linha de comando:
 npx cypress run
 
+Para configurar o reporter no cypress realize os seguintes passos:
+1º Instale o reporter do mochawesome: npm i --save-dev cypress-mochawesome-reporter
+2º Edit o arquivo de configuração cypress.config.js e adicione em modules exports:  reporter: 'cypress-mochawesome-reporter',
+em e2e, adicione:  require('cypress-mochawesome-reporter/plugin')(on);
+3º em cypress/support/e2e.js adicione: import  'cypress-mochawesome-reporter/cucumberSupport' ; 
+
 
 
 comandos cypress:
