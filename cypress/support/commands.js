@@ -48,6 +48,12 @@ const elementos = {
         lblPendingOrdens: '.vendor_order_boxed.pt-4 h4',
         lblAllgOrdens: '.vendor_order_boxed.pt-4 h4',
         lblTopoPendigOrdens: '.thead-light',
+        //abaixo labels da tela downloads
+        lblModuloDownloads: '.fa.fa-cloud-download'
+    },
+
+    tables:{
+        tblDownloads: '.table_page.table-responsive'
     }
 }
 
@@ -98,4 +104,14 @@ Cypress.Commands.add('ValidarColunasPendingOrders', () =>{
     cy.get(elementos.labels.lblTopoPendigOrdens).eq(0)
     .contains('tr', 'Image')
     .contains('tr', 'Product Name')
+})
+
+Cypress.Commands.add('acessarDownloads', () =>{
+    cy.get(elementos.labels.lblModuloDownloads).click()
+})
+
+Cypress.Commands.add('validarColunasTelaDonwloads', () =>{
+    cy.get(elementos.tables.tblDownloads).contains('tr', 'Product')
+    .contains('tr', 'Ordered').contains('tr', 'Status')
+    .contains('tr', 'Download')
 })
