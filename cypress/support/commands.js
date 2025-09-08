@@ -25,6 +25,9 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 /// <reference types="cypress" />
 
+const bodyCadastro = require('../fixtures/cadastroDispositivo.json')
+const bodyAlteraCadastro = require('../fixtures/alterarDispositivoCad.json')
+
 const elementos = {
 
     buttons:{
@@ -114,4 +117,41 @@ Cypress.Commands.add('validarColunasTelaDonwloads', () =>{
     cy.get(elementos.tables.tblDownloads).contains('tr', 'Product')
     .contains('tr', 'Ordered').contains('tr', 'Status')
     .contains('tr', 'Download')
+})
+
+Cypress.Commands.add('buscarDispositivo', (idDispositivo) =>{
+    cy.request({
+            method: 'GET',
+            url: `https://api.restful-api.dev/objects/${idDispositivo}`,
+            failOnStatusCode: false
+        }).then((response) =>{return response})
+})
+
+Cypress.Commands.add('cadastrarDispositivo', () =>{
+
+    cy.request({
+            method: 'POST',
+            url: `https://api.restful-api.dev/objects`,
+            failOnStatusCode: false,
+            body: bodyCadastro
+
+        }).then((response) =>{return response})
+})
+
+Cypress.Commands.add('alterarCadastroDispositivo', (idDispositivo) => {
+    cy.request({
+        method: 'PUT',
+        url: `https://api.restful-api.dev/objects/${idDispositivo}`,
+        failOnStatusCode: false,
+        body: bodyAlteraCadastro
+    }).then((response) => {return response})
+})
+
+Cypress.Commands.add('deletarDispositivo', (idDispositivo) =>{
+
+    cy.request({
+        method: 'DELETE',
+        url: `https://api.restful-api.dev/objects/${idDispositivo}`,
+        failOnStatusCode: false
+    }).then((response) =>{return response})
 })
